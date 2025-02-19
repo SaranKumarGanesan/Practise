@@ -2,6 +2,9 @@ package com.example.StoreApplication.AppConstants;
 
 public final class AppConstants {
 	
+	// Since it is a class which contains only constants, it is better to make constructor private
+		// It ensures, nobody will instantiate it
+	
 	public static final String ITEM_ADDED_TO_CART = "Item added to cart successfully!";
 
 	public static final String PRODUCT_NOT_SAVED = "Product Not Saved";
@@ -75,6 +78,11 @@ public final class AppConstants {
 	
 	public static final String UNAUTHORIZED_ACCESS_MESSAGE = "You dont have access to this resource";
 
+	// Private constructor to prevent instantiation
+    private AppConstants() {
+        // Prevent instantiation
+        throw new UnsupportedOperationException("Cannot instantiate Constants class");
+    }
 
 
 }

@@ -2,6 +2,7 @@ package com.example.StoreApplication.ServicesImpl;
 
 import java.util.Optional;
 
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.StoreApplication.AppConstants.AppConstants;
 import com.example.StoreApplication.Dto.ResponseDTO;
 import com.example.StoreApplication.Dto.UserDTO;
-import com.example.StoreApplication.Exceptions.RuntimeExceptions;
+import com.example.StoreApplication.Exceptions.ExceptionHandeler;
 import com.example.StoreApplication.Model.User;
 import com.example.StoreApplication.Repositories.UserRepository;
 import com.example.StoreApplication.Services.UserService;
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService {
 		Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
 		
 		if (existingUser.isPresent()) {
-			throw new RuntimeExceptions(AppConstants.EMAIL_ALREADY_EXIST + user.getEmail());
+			throw new ExceptionHandeler(AppConstants.EMAIL_ALREADY_EXIST + user.getEmail());
 		}
 		String encode = encoder.encode(user.getPassword());
 		user.setPassword(encode);
@@ -57,10 +58,10 @@ public class UserServiceImpl implements UserService {
 						responseDTO.setSession(session.getId());
 						return responseDTO;
 					} else {
-						throw new RuntimeExceptions(AppConstants.INVALID_CREDENTIALS);
+						throw new ExceptionHandeler(AppConstants.INVALID_CREDENTIALS);
 					}
 				} else {
-					throw new RuntimeExceptions(AppConstants.USER_NOT_FOUND + user.getEmail());
+					throw new ExceptionHandeler(AppConstants.USER_NOT_FOUND + user.getEmail());
 				}
 			}
 

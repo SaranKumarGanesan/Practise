@@ -19,9 +19,13 @@ import jakarta.servlet.http.HttpSession;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-	@Autowired
-	private UserService userService;
+
+	private final UserService userService;
 	
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
+
 	@PostMapping("/register")
 	public ResponseEntity<UserDTO> registerUser(@RequestBody User user) {
 		UserDTO registerUser = userService.registerUser(user);

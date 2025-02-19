@@ -3,10 +3,11 @@ package com.example.StoreApplication.ServicesImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import org.springframework.stereotype.Service;
 
 import com.example.StoreApplication.AppConstants.AppConstants;
-import com.example.StoreApplication.Exceptions.RuntimeExceptions;
+import com.example.StoreApplication.Exceptions.ExceptionHandeler;
 import com.example.StoreApplication.Model.User;
 import com.example.StoreApplication.Services.UserService;
 
@@ -22,7 +23,7 @@ public class UserSessionServiceImpl {
 		Long userId = (Long) session.getAttribute(AppConstants.USER_ID);
 
 		if (userId == null) {
-			throw new RuntimeExceptions(AppConstants.UNAUTHORIZED_USER);
+			throw new ExceptionHandeler(AppConstants.UNAUTHORIZED_USER);
 		}
 
 		Long userid = (Long) session.getAttribute(AppConstants.USER_ID);

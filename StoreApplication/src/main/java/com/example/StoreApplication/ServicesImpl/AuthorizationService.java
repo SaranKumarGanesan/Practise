@@ -1,10 +1,11 @@
 package com.example.StoreApplication.ServicesImpl;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.example.StoreApplication.Dto.Role;
 
-@Service
+@Component
 public class AuthorizationService {
 	public Role getCurrentUserRole() {
 		return Role.ADMIN;

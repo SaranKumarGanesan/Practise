@@ -12,7 +12,7 @@ import com.example.StoreApplication.AppConstants.AppConstants;
 import com.example.StoreApplication.Dto.CartDetailsDTO;
 import com.example.StoreApplication.Dto.CartItemDetailsDTO;
 import com.example.StoreApplication.Dto.ResponseDTO;
-import com.example.StoreApplication.Exceptions.RuntimeExceptions;
+import com.example.StoreApplication.Exceptions.ExceptionHandeler;
 import com.example.StoreApplication.Model.Cart;
 import com.example.StoreApplication.Model.CartItem;
 import com.example.StoreApplication.Model.Product;
@@ -106,7 +106,7 @@ public class CartServiceImpl implements CartService {
 		CartItem cartItem = cartItemRepository.findById(cartItemId).orElse(null);
 
 		if (cartItem == null || !cartItem.getCart().equals(cart)) {
-			throw new RuntimeExceptions(
+			throw new ExceptionHandeler(
 					//AppConstants.CART_ITEM_WITH_ID + cartItemId + AppConstants.NOT_FOUND + userId
 					String.format(AppConstants.CART_ITEM_NOT_FOUND,cartItem,userId));
 			
@@ -131,13 +131,13 @@ public class CartServiceImpl implements CartService {
 		Optional<CartItem> cartItem = cartItemRepository.findById(cartItemId);
 
 		if (cartItem.isEmpty()) {
-			throw new RuntimeExceptions(
+			throw new ExceptionHandeler(
 					//AppConstants.CART_ITEM + cartItemId + AppConstants.NOT_FOUND + userId
 					String.format(AppConstants.CART_ITEM_NOT_FOUND,cartItem,userId));
 		}
 		CartItem cartItem2 = cartItem.get();
 		if (quantity <= 0) {
-			throw new RuntimeExceptions(AppConstants.QUANTITY_GREATER_THAN_ZERO);
+			throw new ExceptionHandeler(AppConstants.QUANTITY_GREATER_THAN_ZERO);
 		}
 
 		cartItem2.setQuantity(quantity);

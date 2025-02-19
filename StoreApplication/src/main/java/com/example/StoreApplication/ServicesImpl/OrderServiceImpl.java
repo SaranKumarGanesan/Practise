@@ -1,6 +1,7 @@
 package com.example.StoreApplication.ServicesImpl;
 
 import java.math.BigDecimal;
+
 import java.util.Date;
 import java.util.Optional;
 
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.StoreApplication.AppConstants.AppConstants;
 import com.example.StoreApplication.Dto.ProductDTO;
 import com.example.StoreApplication.Dto.ResponseDTO;
-import com.example.StoreApplication.Exceptions.RuntimeExceptions;
+import com.example.StoreApplication.Exceptions.ExceptionHandeler;
 import com.example.StoreApplication.Model.Cart;
 import com.example.StoreApplication.Model.CartItem;
 import com.example.StoreApplication.Model.Order;
@@ -39,7 +40,7 @@ public class OrderServiceImpl implements OrderService{
 	public ResponseDTO checkout(Long userId) {
 		// TODO Auto-generated method stub
 		if(userId == null) {
-			throw new RuntimeExceptions(AppConstants.USER_NOT_FOUND_EXCEPTION);
+			throw new ExceptionHandeler(AppConstants.USER_NOT_FOUND_EXCEPTION);
 		}
 		Cart cart = cartRepository.findByUserId(userId);
 		if (cart == null) {

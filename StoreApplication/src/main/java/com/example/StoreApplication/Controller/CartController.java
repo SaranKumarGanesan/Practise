@@ -39,7 +39,6 @@ public class CartController {
 	private final UserSessionServiceImpl userSessionServiceImpl;
 
 	public CartController(CartService cartService, UserSessionServiceImpl userSessionServiceImpl) {
-		super();
 		this.cartService = cartService;
 		this.userSessionServiceImpl = userSessionServiceImpl;
 	}
